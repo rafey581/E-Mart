@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - E-Mart | Save For Later</title>
+    <meta name="description"
+        content="Manage your wishlist at E-Mart. Save your favorite products for later and easily move them to your cart.">
+    <meta name="robots" content="noindex, follow">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sora', sans-serif;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <header class="flex items-center justify-between p-4 border-b border-gray-300 bg-white">
+        <a href="index.html">
+            <img class="h-16" src="./assets/icons/logo.png" alt="E-Mart Logo"
+                onerror="this.onerror=null; this.style.display='none'">
+        </a>
+        <nav class="hidden md:flex gap-6 text-sm md:text-base font-medium">
+            <a class="hover:underline" href="index.html">Home</a>
+            <a class="hover:underline" href="index.html#product-container">Shop</a>
+        </nav>
+        <div class="flex gap-4 items-center">
+            <button onclick="toggleDarkMode()" class="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                title="Toggle Dark Mode">
+                <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+            <a href="whishlist.html" aria-label="Wishlist"><img class="h-8 transition-transform hover:scale-110"
+                    src="./assets/icons/heart logo.png" alt="Wishlist"></a>
+            <a href="cart.html" aria-label="Cart"><img class="h-8 transition-transform hover:scale-110"
+                    src="./assets/icons/cart icon.png" alt="Cart"></a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8">My Wishlist</h1>
+
+        <div id="wishlist-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Items will be loaded here -->
+        </div>
+
+        <div id="empty-wishlist" class="hidden text-center py-20">
+            <p class="text-xl text-gray-500 mb-4">Your wishlist is empty</p>
+            <a href="index.html"
+                class="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">Continue
+                Shopping</a>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('wishlist-container');
+            const emptyMsg = document.getElementById('empty-wishlist');
+
+            function loadWishlist() {
+                const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+                if (wishlist.length === 0) {
+                    container.classList.add('hidden');
+                    emptyMsg.classList.remove('hidden');
+                    return;
+                }
+
+                container.classList.remove('hidden');
+                emptyMsg.classList.add('hidden');
+                container.innerHTML = wishlist.map(product => `
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition">
+                        <div class="relative h-48">
+                            <img src="${product.image || './assets/icons/image.png'}" alt="${product.name}" class="w-full h-full object-cover">
+                            <button onclick="removeFromWishlist(${product.id})" class="absolute top-2 right-2 bg-white/80 p-1.5 rounded-full hover:bg-red-50 text-red-500 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            <h3 class="font-semibold text-lg mb-1 truncate">${product.name}</h3>
+                            <p class="text-blue-600 font-bold mb-3">Rs. ${Math.round(product.price)}</p>
+                            <button onclick="moveToCart(${product.id})" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+                                Move to Cart
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            window.removeFromWishlist = (id) => {
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                wishlist = wishlist.filter(p => p.id !== id);
+                localStorage.setItem('wishlist', JSON.stringify(wishlist));
+                loadWishlist();
+            };
+
+            window.moveToCart = (id) => {
+                let wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+                const product = wishlist.find(p => p.id === id);
+
+                if (product) {
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    if (!cart.find(p => p.id === id)) {
+                        cart.push({ ...product, quantity: 1 });
+                    } else {
+                        const item = cart.find(p => p.id === id);
+                        item.quantity++;
+                    }
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    removeFromWishlist(id);
+                    alert('Moved to cart!');
+                }
+            };
+
+            loadWishlist();
+        });
+    </script>
+</body>
+
+</html>

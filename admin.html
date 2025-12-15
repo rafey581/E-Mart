@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - E-Mart</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .tab-button {
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            border-bottom-color: #3b82f6;
+            color: #3b82f6;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-card h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-card p {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-zxl mx-auto  flex justify-between items-center" style="padding: 1rem 1rem;">
+            <div class="flex items-center gap-4">
+                <img class="h-12" src="./assets/icons/logo.png" alt="E-Mart Logo"
+                    onerror="this.onerror=null; this.style.display='none'">
+                <h1 class="text-xl md:text-2xl font-bold text-gray-800">Admin Panel</h1>
+            </div>
+            <div class="flex gap-2 items-center">
+                <button onclick="toggleDarkMode()" class="p-1  text-xs md:text-lg rounded-full hover:bg-gray-100 transition-colors"
+                    title="Toggle Dark Mode">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-800" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <a href="index.html" class="btn btn-primary">View Website</a>
+                <button onclick="logout()" class="btn btn-danger text-xs md:text-lg ">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Tabs Navigation -->
+    <div class="bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex gap-4">
+                <button class="tab-button active" onclick="switchTab('dashboard')">📊 Dashboard</button>
+                <button class="tab-button" onclick="switchTab('products')">📦 Products</button>
+                <button class="tab-button" onclick="switchTab('add-product')">➕ Add Product</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="admin-container">
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <h2 class="text-3xl font-bold mb-6">Dashboard Overview</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="stats-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <h3 id="total-products">0</h3>
+                    <p>Total Products</p>
+                </div>
+                <div class="stats-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <h3 id="total-categories">0</h3>
+                    <p>Categories</p>
+                </div>
+                <div class="stats-card" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <h3 id="low-stock">0</h3>
+                    <p>Low Stock Items</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-xl font-semibold mb-4">Recent Products</h3>
+                <div id="recent-products-list"></div>
+            </div>
+        </div>
+
+        <!-- Products Tab -->
+        <div id="products" class="tab-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold">All Products</h2>
+                <button onclick="switchTab('add-product')" class="btn btn-success">➕ Add New Product</button>
+            </div>
+
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Brand</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-table-body">
+                        <!-- Products will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Add Product Tab -->
+        <div id="add-product" class="tab-content">
+            <h2 class="text-3xl font-bold mb-6">Add New Product</h2>
+
+            <div class="bg-white p-8 rounded-lg shadow">
+                <form id="add-product-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="form-group">
+                            <label for="product-name">Product Name *</label>
+                            <input type="text" id="product-name" name="name" required placeholder="Enter product name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-category">Category *</label>
+                            <select id="product-category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Computers">Computers</option>
+                                <option value="Mobiles">Mobiles</option>
+                                <option value="Audio">Audio</option>
+                                <option value="Wearables">Wearables</option>
+                                <option value="Video">Video</option>
+                                <option value="Gaming">Gaming</option>
+                                <option value="Accessories">Accessories</option>
+                                <option value="Clothes">Clothes</option>
+                                <option value="shoes">Shoes</option>
+                                <option value="bags">Bags</option>
+                                <option value="jewelry">Jewelry</option>
+                                <option value="makeup">Makeup</option>
+                                <option value="toys">Toys</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="homeappliances">Home Appliances</option>
+                                <option value="sportsandfitness">Sports and Fitness</option>
+                                <option value="booksandstationary">Books and Stationary</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-brand">Brand *</label>
+                            <input type="text" id="product-brand" name="brand" required placeholder="Enter brand name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-price">Price ($) *</label>
+                            <input type="number" id="product-price" name="price" step="0.01" min="0" required
+                                placeholder="0.00">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product-stock">Stock Quantity *</label>
+                            <input type="number" id="product-stock" name="stock" min="0" required placeholder="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Product Image *</label>
+                            <div class="image-input-tabs" style="margin-top: 0.5rem;">
+                                <div class="flex gap-2 mb-3">
+                                    <button type="button" class="image-tab-btn active" onclick="switchImageTab('url')"
+                                        style="padding: 0.5rem 1rem; border: 2px solid #3b82f6; background: #3b82f6; color: white; border-radius: 0.375rem; cursor: pointer; font-weight: 500; transition: all 0.3s;">
+                                        🔗 Image URL
+                                    </button>
+                                    <button type="button" class="image-tab-btn" onclick="switchImageTab('upload')"
+                                        style="padding: 0.5rem 1rem; border: 2px solid #e5e7eb; background: white; color: #6b7280; border-radius: 0.375rem; cursor: pointer; font-weight: 500; transition: all 0.3s;">
+                                        📁 Upload Image
+                                    </button>
+                                </div>
+
+                                <div id="url-input-section" class="image-input-section">
+                                    <input type="text" id="product-image-url" name="imageUrl"
+                                        placeholder="Enter image URL (e.g., ../images/product.png)">
+                                </div>
+
+                                <div id="upload-input-section" class="image-input-section" style="display: none;">
+                                    <input type="file" id="product-image-upload" name="imageUpload" accept="image/*"
+                                        style="padding: 0.5rem; border: 2px dashed #d1d5db; border-radius: 0.375rem; width: 100%; cursor: pointer;">
+                                    <p style="margin-top: 0.5rem; font-size: 0.875rem; color: #6b7280;">
+                                        Supported formats: JPG, PNG, GIF, WebP (Max 5MB)
+                                    </p>
+                                </div>
+
+                                <input type="hidden" id="product-image" name="image" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="product-description">Description *</label>
+                        <textarea id="product-description" name="description" rows="4" required
+                            placeholder="Enter product description"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Image Preview</label>
+                        <div class="image-preview empty" id="image-preview">
+                            <span>Image preview will appear here</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button type="submit" class="btn btn-success">✓ Add Product</button>
+                        <button type="reset" class="btn btn-warning" onclick="resetForm()">↺ Reset Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Edit Product</h2>
+                <button onclick="closeEditModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            </div>
+
+            <form id="edit-product-form">
+                <input type="hidden" id="edit-product-id">
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label for="edit-product-name">Product Name *</label>
+                        <input type="text" id="edit-product-name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-product-category">Category *</label>
+                        <select id="edit-product-category" name="category" required>
+                            <option value="Computers">Computers</option>
+                            <option value="Mobiles">Mobiles</option>
+                            <option value="Audio">Audio</option>
+                            <option value="Wearables">Wearables</option>
+                            <option value="Video">Video</option>
+                            <option value="Gaming">Gaming</option>
+                            <option value="Accessories">Accessories</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-product-brand">Brand *</label>
+                        <input type="text" id="edit-product-brand" name="brand" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-product-price">Price ($) *</label>
+                        <input type="number" id="edit-product-price" name="price" step="0.01" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-product-stock">Stock Quantity *</label>
+                        <input type="number" id="edit-product-stock" name="stock" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-product-image">Image URL *</label>
+                        <input type="text" id="edit-product-image" name="image" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-product-description">Description *</label>
+                    <textarea id="edit-product-description" name="description" rows="4" required></textarea>
+                </div>
+
+                <div class="flex gap-4">
+                    <button type="submit" class="btn btn-success">✓ Update Product</button>
+                    <button type="button" onclick="closeEditModal()" class="btn btn-warning">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal" style="display: flex; background-color: #f3f4f6;">
+        <!-- Using inline style to ensure it's visible initially and has a solid background to hide content -->
+        <div class="modal-content" style="max-width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+            <div class="text-center mb-8">
+                <img src="./assets/icons/logo.png" alt="Logo" class="h-16 mx-auto mb-4"
+                    onerror="this.onerror=null; this.src='https://via.placeholder.com/64'">
+                <h2 class="text-2xl font-bold text-gray-800">Admin Login</h2>
+                <p class="text-gray-500 mt-2">Please sign in to continue</p>
+            </div>
+
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="admin-email">Email Address</label>
+                    <input type="email" id="admin-email" required placeholder="admin@example.com"
+                        class="w-full p-3 border border-gray-300 rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                </div>
+
+                <div class="form-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" required placeholder="Enter password"
+                        class="w-full p-3 border border-gray-300 rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500">
+                </div>
+
+                <div id="login-error" class="text-red-500 text-sm mb-4 text-center hidden">
+                    Invalid email or password
+                </div>
+
+                <button type="submit" class="btn btn-primary w-full py-3 text-lg font-semibold">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="products-data.js"></script>
+    <script src="admin.js"></script>
+    <script src="admin-auth.js"></script>
+</body>
+
+</html>
