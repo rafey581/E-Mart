@@ -1,19 +1,50 @@
 // Simple non-module version for compatibility
 (async function () {
-  // Initialize products in localStorage if not exists
+  // Initialize products in localStorage if not exists or needs update
   async function initializeProducts() {
-    if (!localStorage.getItem('products')) {
-      // Try to use global productsData (loaded from products-data.js) if available
-      if (typeof productsData !== 'undefined') {
-        console.log('Initializing products from products-data.js');
-        localStorage.setItem('products', JSON.stringify(productsData));
-        return;
+    let localProducts = JSON.parse(localStorage.getItem('products') || '[]');
+    let hasUpdates = false;
+
+    // Try to use global productsData (loaded from products-data.js) if available
+    if (typeof productsData !== 'undefined' && Array.isArray(productsData)) {
+      console.log('Checking for updates from products-data.js');
+
+      // 1. Identify products from productsData that are completely missing in localStorage
+      const missingProducts = productsData.filter(pData =>
+        !localProducts.some(pLocal => pLocal.id === pData.id)
+      );
+
+      if (missingProducts.length > 0) {
+        console.log(`Adding ${missingProducts.length} new default products to localStorage`);
+        localProducts = [...localProducts, ...missingProducts];
+        hasUpdates = true;
       }
 
+      // 2. Check for updates to existing products (specifically images)
+      localProducts = localProducts.map(pLocal => {
+        const pData = productsData.find(p => p.id === pLocal.id);
+        if (pData && pData.image && (!pLocal.image || pLocal.image === "")) {
+          console.log(`Updating image for product: ${pLocal.name}`);
+          hasUpdates = true;
+          return { ...pLocal, image: pData.image };
+        }
+        return pLocal;
+      });
+
+      if (hasUpdates) {
+        localStorage.setItem('products', JSON.stringify(localProducts));
+      }
+      return;
+    }
+
+    // Fallback: If localStorage is totally empty and no global data, try fetch
+    if (localProducts.length === 0) {
       try {
         const response = await fetch('./api/products.json');
-        const productsData = await response.json();
-        localStorage.setItem('products', JSON.stringify(productsData));
+        if (response.ok) {
+          const fetchedData = await response.json();
+          localStorage.setItem('products', JSON.stringify(fetchedData));
+        }
       } catch (error) {
         console.error('Error loading products:', error);
       }

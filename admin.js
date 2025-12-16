@@ -1,9 +1,38 @@
 // Product Management System using LocalStorage
 // productsData is loaded from products-data.js
 
-// Initialize products in localStorage if not exists
+// Initialize products in localStorage if not exists or update
 function initializeProducts() {
-    if (!localStorage.getItem('products')) {
+    let localProducts = JSON.parse(localStorage.getItem('products') || '[]');
+    let hasUpdates = false;
+
+    if (typeof productsData !== 'undefined' && Array.isArray(productsData)) {
+        // 1. Add missing products
+        const missingProducts = productsData.filter(pData =>
+            !localProducts.some(pLocal => pLocal.id === pData.id)
+        );
+
+        if (missingProducts.length > 0) {
+            console.log(`Admin: Adding ${missingProducts.length} missing default products`);
+            localProducts = [...localProducts, ...missingProducts];
+            hasUpdates = true;
+        }
+
+        // 2. Sync images for existing products
+        localProducts = localProducts.map(pLocal => {
+            const pData = productsData.find(p => p.id === pLocal.id);
+            if (pData && pData.image && (!pLocal.image || pLocal.image === "")) {
+                console.log(`Admin: Updating image for product: ${pLocal.name}`);
+                hasUpdates = true;
+                return { ...pLocal, image: pData.image };
+            }
+            return pLocal;
+        });
+
+        if (hasUpdates) {
+            localStorage.setItem('products', JSON.stringify(localProducts));
+        }
+    } else if (localProducts.length === 0 && typeof productsData !== 'undefined') {
         localStorage.setItem('products', JSON.stringify(productsData));
     }
 }
