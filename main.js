@@ -63,7 +63,7 @@
     card.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300';
 
     card.innerHTML = `
-            <div class="relative overflow-hidden bg-gray-100 cursor-pointer">
+            <div class="h-64 relative overflow-hidden bg-gray-100 cursor-pointer">
                 <img 
                     src="${product.image || './assets/icons/image.png'}" 
                     alt="${product.name}"

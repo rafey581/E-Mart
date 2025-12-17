@@ -249,5 +249,136 @@ const productsData = [
         stock: 100,
         price: 1200,
         image: ""
-    }
+    },
+    {
+        id: 26,
+        name: "Men's Graphic Tee",
+        category: "Fashion",
+        description: "Trendy graphic t-shirt for casual outings.",
+        brand: "StreetVibe",
+        stock: 80,
+        price: 1200,
+        image: "./assets/images/t-shirt2.jpg"
+    },
+    {
+        id: 27,
+        name: "Solid Polo Shirt",
+        category: "Fashion",
+        description: "Classic polo shirt, perfect for smart-casual look.",
+        brand: "ClassicMan",
+        stock: 60,
+        price: 1800,
+        image: "./assets/images/polo-shirt.jpg"
+    },
+    {
+        id: 29,
+        name: "Men's Winter Puffer Jacket",
+        category: "Fashion",
+        description: "Keep warm with this insulated puffer jacket.",
+        brand: "WarmUp",
+        stock: 30,
+        price: 8500,
+        image: "./assets/images/jacket.jpg"
+    },
+    {
+        id: 31,
+        name: "Windbreaker Sport Jacket",
+        category: "Sports",
+        description: "Lightweight windbreaker for outdoor activities.",
+        brand: "ActiveGear",
+        stock: 50,
+        price: 3500,
+        image: "./assets/images/jacket2.jpg"
+    },
+    {
+        id: 32,
+        name: "Baseball Cap",
+        category: "Fashion",
+        description: "Classic structured baseball cap.",
+        brand: "HeadGear",
+        stock: 100,
+        price: 800,
+        image: "./assets/images/cap2.jpg"
+    },
+    {
+        id: 33,
+        name: "Snapback Cap",
+        category: "Fashion",
+        description: "Urban style snapback with flat brim.",
+        brand: "StreetStyle",
+        stock: 80,
+        price: 1000,
+        image: "./assets/images/cap1.jpg"
+    },
+    {
+        id: 34,
+        name: "Running Visor",
+        category: "Sports",
+        description: "Breathable visor for running and tennis.",
+        brand: "FastTrack",
+        stock: 60,
+        price: 700,
+        image: ""
+    },
+    {
+        id: 37,
+        name: "Casual Maxi Dress",
+        category: "Fashion",
+        description: "Comfortable long dress for everyday wear.",
+        brand: "ComfyChic",
+        stock: 50,
+        price: 2800,
+        image: "./assets/images/maxi.jpg"
+    },
+    {
+        id: 38,
+        name: "Gold Plated Necklace",
+        category: "Fashion",
+        description: "Delicate chain necklace with a gold finish.",
+        brand: "ShineOn",
+        stock: 40,
+        price: 2500,
+        image: "./assets/images/necklace.jpg"
+    },
+    {
+        id: 40,
+        name: "Charm Bracelet",
+        category: "Fashion",
+        description: "Customizable bracelet with various charms.",
+        brand: "WristCandy",
+        stock: 55,
+        price: 1800,
+        image: "./assets/images/bracelet.jpg"
+    },
+    {
+        id: 41,
+        name: "Men's Formal Leather Shoes",
+        category: "Fashion",
+        description: "Polished leather shoes for business and formal events.",
+        brand: "GentleStep",
+        stock: 35,
+        price: 9000,
+        image: "./assets/images/leather-shoes.jpg"
+    },
+    {
+        id: 42,
+        name: "Women's High Heels",
+        category: "Fashion",
+        description: "Elegant stilettos to elevate your style.",
+        brand: "StepUp",
+        stock: 40,
+        price: 7500,
+        image: "./assets/images/heels.jpg"
+    },
+    {
+        id: 44,
+        name: "Men's Hiking Boots",
+        category: "Sports",
+        description: "Rugged boots designed for tough terrains.",
+        brand: "TrailBlazer",
+        stock: 25,
+        price: 8000,
+        image: "./assets/images/mens-shoes.jpg"
+    },
+    
 ];
