@@ -63,11 +63,11 @@
     card.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300';
 
     card.innerHTML = `
-            <div class="h-64 relative overflow-hidden bg-gray-100 cursor-pointer">
+            <div class="h-40 relative overflow-hidden bg-gray-100 cursor-pointer">
                 <img 
                     src="${product.image || './assets/icons/image.png'}" 
                     alt="${product.name}"
-                    class="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                    class="w-full h-full object-contain hover:scale-110 transition-transform duration-300"
                     onerror="this.onerror=null; this.src='./assets/icons/image.png'"
                 >
                 ${product.stock < 10 ? '<span class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded text-xs">Low Stock</span>' : ''}

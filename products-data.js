@@ -6,7 +6,7 @@ const productsData = [
         category: "Electronics",
         description: "Latest model with high-resolution camera and long battery life.",
         brand: "TechBrand",
-        stock: 50,
+        stock: 5,
         price: 89999,
         image: "./assets/images/smartXpro.jpg"
     },
@@ -27,7 +27,7 @@ const productsData = [
         description: "Lightweight and powerful laptop for work and play.",
         brand: "CompuTech",
         stock: 20,
-        price: 125000,
+        price: 99000,
         image: ""
     },
     {
@@ -36,8 +36,8 @@ const productsData = [
         category: "Electronics",
         description: "Track your fitness and stay connected on the go.",
         brand: "WristTech",
-        stock: 45,
-        price: 25000,
+        stock: 4,
+        price: 2500,
         image: "./assets/images/smart-watch.jpg"
     },
     {
@@ -256,7 +256,7 @@ const productsData = [
         category: "Fashion",
         description: "Trendy graphic t-shirt for casual outings.",
         brand: "StreetVibe",
-        stock: 80,
+        stock: 8,
         price: 1200,
         image: "./assets/images/t-shirt2.jpg"
     },
@@ -296,7 +296,7 @@ const productsData = [
         category: "Fashion",
         description: "Classic structured baseball cap.",
         brand: "HeadGear",
-        stock: 100,
+        stock: 2,
         price: 800,
         image: "./assets/images/cap2.jpg"
     },
@@ -356,7 +356,7 @@ const productsData = [
         category: "Fashion",
         description: "Polished leather shoes for business and formal events.",
         brand: "GentleStep",
-        stock: 35,
+        stock: 5,
         price: 9000,
         image: "./assets/images/leather-shoes.jpg"
     },
