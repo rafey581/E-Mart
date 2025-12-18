@@ -83,7 +83,7 @@
                     <span class="text-xs text-gray-400">Stock: ${product.stock}</span>
                 </div>
             <div class="flex justify-between items-center">
-                    <span class=" md:text-2xl text-lg font-bold text-blue-600 cursor-pointer">Rs. ${Math.round(product.price)}</span>
+                    <span class=" md:text-2xl text-sm font-bold text-blue-600 cursor-pointer">Rs. ${Math.round(product.price)}</span>
                     <div class="flex gap-2 items-center">
                         <button 
                             onclick="window.addToWishlist(${product.id})" 
@@ -96,7 +96,7 @@
                         </button>
                         <button 
                             onclick="window.addToCart(${product.id})" style="padding: 0.2rem 0.5rem; cursor-pointer"
-                            class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-xs md:text-sm font-medium"
+                            class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-[8px] md:text-sm font-medium"
                         >
                             Add to Cart
                         </button>

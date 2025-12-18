@@ -18,7 +18,7 @@ const productsData = [
         brand: "AudioMaster",
         stock: 30,
         price: 15000,
-        image: "./assets/images/headphones.jpg"
+        image: "."
     },
     {
         id: 3,
