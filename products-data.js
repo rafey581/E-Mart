@@ -48,7 +48,7 @@ const productsData = [
         brand: "CaptureIt",
         stock: 15,
         price: 18000,
-        image: ""
+        image: "./assets/images/camera.jpg"
     },
     {
         id: 6,
@@ -68,7 +68,7 @@ const productsData = [
         brand: "DenimCo",
         stock: 60,
         price: 3500,
-        image: ""
+        image: "./assets/images/jeans.jpg"
     },
     {
         id: 8,
@@ -108,7 +108,7 @@ const productsData = [
         brand: "BrewMaster",
         stock: 25,
         price: 8500,
-        image: ""
+        image: "./assets/images/coffee-maker.jpg"
     },
     {
         id: 12,
@@ -118,7 +118,7 @@ const productsData = [
         brand: "KitchenPro",
         stock: 35,
         price: 7000,
-        image: ""
+        image: "./assets/images/blender.jpg"
     },
     {
         id: 13,
@@ -148,7 +148,7 @@ const productsData = [
         brand: "CleanBot",
         stock: 12,
         price: 35000,
-        image: ""
+        image: "./assets/images/vacuum-cleaner.jpg"
     },
     {
         id: 16,
@@ -158,7 +158,7 @@ const productsData = [
         brand: "FlexFit",
         stock: 70,
         price: 2500,
-        image: ""
+        image: "./assets/images/yoga-mat.jpg"
     },
     {
         id: 17,
