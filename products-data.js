@@ -37,7 +37,7 @@ const productsData = [
         brand: "CaptureIt",
         stock: 15,
         price: 18000,
-        image: "./assets/images/camera.jfif"
+        image: "./assets/images/camera.jpg"
     },
 
     // Fashion
@@ -53,13 +53,13 @@ const productsData = [
     },
     {
         id: 6,
-        name: "Slim Fit Denim Jeans",
+        name: "Soft Comfort Lace Bra",
         category: "Fashion",
-        description: "Stylish and durable jeans with a perfect fit.",
+        description: "Experience everyday comfort with our Soft Comfort Lace Bra.",
         brand: "DenimCo",
-        stock: 60,
+        stock: 6,
         price: 3500,
-        image: "./assets/images/jeans.jfif"
+        image: "./assets/images/bra.jpg"
     },
     {
         id: 7,
@@ -173,7 +173,7 @@ const productsData = [
     },
     {
         id: 18,
-        name: "Men's Formal Leather Shoes",
+        name: "Men's Leather Shoes",
         category: "Fashion",
         description: "Polished leather shoes for business and formal events.",
         brand: "GentleStep",
@@ -231,7 +231,7 @@ const productsData = [
         brand: "CleanBot",
         stock: 12,
         price: 35000,
-        image: "./assets/images/vacuum-cleaner.jfif"
+        image: "./assets/images/vacuum-cleaner.jpg"
     },
 
     // Sports

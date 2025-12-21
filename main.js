@@ -106,7 +106,7 @@
                         </button>
                         <button 
                             onclick="window.addToCart(${product.id})" style="padding: 0.2rem 0.5rem; cursor-pointer"
-                            class="bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-[8px] md:text-sm font-medium"
+                            class="bg-blue-600 h-8 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200 text-[8px] md:text-sm font-medium"
                         >
                             Add to Cart
                         </button>
