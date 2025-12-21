@@ -9,6 +9,16 @@
     if (typeof productsData !== 'undefined' && Array.isArray(productsData)) {
       console.log('Checking for updates from products-data.js');
 
+      // 0. Remove products from localStorage that are no longer in productsData (User deleted them from file)
+      const validIds = new Set(productsData.map(p => p.id));
+      const filteredLocal = localProducts.filter(p => validIds.has(p.id));
+
+      if (filteredLocal.length !== localProducts.length) {
+        console.log(`Removing ${localProducts.length - filteredLocal.length} obsolete products from localStorage`);
+        localProducts = filteredLocal;
+        hasUpdates = true;
+      }
+
       // 1. Identify products from productsData that are completely missing in localStorage
       const missingProducts = productsData.filter(pData =>
         !localProducts.some(pLocal => pLocal.id === pData.id)
@@ -63,7 +73,7 @@
     card.className = 'product-card bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300';
 
     card.innerHTML = `
-            <div class="h-40 relative overflow-hidden bg-gray-100 cursor-pointer">
+            <div class="h-50 relative overflow-hidden bg-gray-100 cursor-pointer">
                 <img 
                     src="${product.image || './assets/icons/image.png'}" 
                     alt="${product.name}"
