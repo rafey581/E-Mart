@@ -2,6 +2,8 @@
 
 E-Mart is a modern, responsive, and lightweight e-commerce web application. It features a rich user interface, a comprehensive product catalog, a shopping cart, a wishlist, and a fully functional admin dashboard for managing products.
 
+👉 [**View Website Live**](https://e-martonline.infinityfreeapp.com/?i=1)
+
 👉 [**View Full Documentation on Google Drive**](https://docs.google.com/document/d/1qB2uPtC5o4i-8cpz3XnqrASOJY4G-pDOwPB-ZNItIYk/edit?usp=sharing
 )
 👉 [**View Figma Design on Figma**](https://www.figma.com/design/o8PvXqEpR0nWjis6p6R4fo/Untitled?node-id=171-6&t=HvYP5P5624VLJCLK-0)
