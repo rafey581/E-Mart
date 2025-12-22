@@ -59,7 +59,7 @@ const productsData = [
         brand: "DenimCo",
         stock: 6,
         price: 3500,
-        image: "./assets/images/bra.jpg"
+        image: "./assets/images/bra.png"
     },
     {
         id: 7,
@@ -191,8 +191,6 @@ const productsData = [
         price: 7500,
         image: "./assets/images/heels.jpg"
     },
-
-    // Home
     {
         id: 20,
         name: "Automatic Coffee Maker",

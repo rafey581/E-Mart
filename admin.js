@@ -18,13 +18,27 @@ function initializeProducts() {
             hasUpdates = true;
         }
 
-        // 2. Sync images for existing products
+        // 2. Sync ALL fields for existing products from productsData
         localProducts = localProducts.map(pLocal => {
             const pData = productsData.find(p => p.id === pLocal.id);
-            if (pData && pData.image && (!pLocal.image || pLocal.image === "")) {
-                console.log(`Admin: Updating image for product: ${pLocal.name}`);
-                hasUpdates = true;
-                return { ...pLocal, image: pData.image };
+            if (pData) {
+                // Check if any field has changed
+                const fieldsToSync = ['name', 'category', 'description', 'brand', 'stock', 'price', 'image'];
+                let productChanged = false;
+
+                for (const field of fieldsToSync) {
+                    if (pData[field] !== pLocal[field]) {
+                        productChanged = true;
+                        break;
+                    }
+                }
+
+                if (productChanged) {
+                    console.log(`Admin: Updating product: ${pData.name} (ID: ${pData.id})`);
+                    hasUpdates = true;
+                    // Sync all fields from productsData, but preserve any additional fields from localStorage
+                    return { ...pLocal, ...pData };
+                }
             }
             return pLocal;
         });
