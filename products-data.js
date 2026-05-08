@@ -7,7 +7,7 @@ const productsData = [
         brand: "TechBrand",
         stock: 5,
         price: 89999,
-        image: "./assets/images/smartXpro.jpg"
+        image: "./assets/images/smartXpro.png"
     },
     {
         id: 2,
@@ -17,7 +17,7 @@ const productsData = [
         brand: "CompuTech",
         stock: 20,
         price: 99000,
-        image: "./assets/images/laptop.jpg"
+        image: "./assets/images/laptop.png"
     },
     {
         id: 3,
@@ -27,7 +27,7 @@ const productsData = [
         brand: "WristTech",
         stock: 4,
         price: 2500,
-        image: "./assets/images/smart-watch.jpg"
+        image: "./assets/images/smart-watch.png"
     },
     {
         id: 4,
@@ -37,7 +37,7 @@ const productsData = [
         brand: "CaptureIt",
         stock: 15,
         price: 18000,
-        image: "./assets/images/camera.jpg"
+        image: "./assets/images/camera.png"
     },
 
     // Fashion
@@ -49,7 +49,7 @@ const productsData = [
         brand: "UrbanStyle",
         stock: 100,
         price: 1500,
-        image: "./assets/images/t-shirt.jpg"
+        image: "./assets/images/t-shirt.png"
     },
     {
         id: 6,
@@ -69,7 +69,7 @@ const productsData = [
         brand: "RunFast",
         stock: 40,
         price: 6000,
-        image: "./assets/images/sneakers.jpg"
+        image: "./assets/images/sneakers.png"
     },
     {
         id: 8,
@@ -79,7 +79,7 @@ const productsData = [
         brand: "RebelWear",
         stock: 10,
         price: 12000,
-        image: "./assets/images/lather-jacket.jpg"
+        image: "./assets/images/lather-jacket.png"
     },
     {
         id: 9,
@@ -89,7 +89,7 @@ const productsData = [
         brand: "SunGuard",
         stock: 80,
         price: 2000,
-        image: "./assets/images/sunglasses.jpg"
+        image: "./assets/images/sunglasses.png"
     },
     {
         id: 10,
@@ -99,7 +99,7 @@ const productsData = [
         brand: "StreetVibe",
         stock: 8,
         price: 1200,
-        image: "./assets/images/t-shirt2.jpg"
+        image: "./assets/images/t-shirt2.png"
     },
     {
         id: 11,
@@ -109,7 +109,7 @@ const productsData = [
         brand: "ClassicMan",
         stock: 60,
         price: 1800,
-        image: "./assets/images/polo-shirt.jpg"
+        image: "./assets/images/polo-shirt.png"
     },
     {
         id: 12,
@@ -119,7 +119,7 @@ const productsData = [
         brand: "WarmUp",
         stock: 30,
         price: 8500,
-        image: "./assets/images/jacket.jpg"
+        image: "./assets/images/jacket.png"
     },
     {
         id: 13,
@@ -129,7 +129,7 @@ const productsData = [
         brand: "HeadGear",
         stock: 2,
         price: 800,
-        image: "./assets/images/cap2.jpg"
+        image: "./assets/images/cap2.png"
     },
     {
         id: 14,
@@ -139,7 +139,7 @@ const productsData = [
         brand: "StreetStyle",
         stock: 80,
         price: 1000,
-        image: "./assets/images/cap1.jpg"
+        image: "./assets/images/cap1.png"
     },
     {
         id: 15,
@@ -149,7 +149,7 @@ const productsData = [
         brand: "ComfyChic",
         stock: 50,
         price: 2800,
-        image: "./assets/images/maxi.jpg"
+        image: "./assets/images/maxi.png"
     },
     {
         id: 16,
@@ -159,7 +159,7 @@ const productsData = [
         brand: "ShineOn",
         stock: 40,
         price: 2500,
-        image: "./assets/images/necklace.jpg"
+        image: "./assets/images/necklace.png"
     },
     {
         id: 17,
@@ -169,7 +169,7 @@ const productsData = [
         brand: "WristCandy",
         stock: 55,
         price: 1800,
-        image: "./assets/images/bracelet.jpg"
+        image: "./assets/images/bracelet.png"
     },
     {
         id: 18,
@@ -179,7 +179,7 @@ const productsData = [
         brand: "GentleStep",
         stock: 5,
         price: 9000,
-        image: "./assets/images/leather-shoes.jpg"
+        image: "./assets/images/leather-shoes.png"
     },
     {
         id: 19,
@@ -189,7 +189,7 @@ const productsData = [
         brand: "StepUp",
         stock: 40,
         price: 7500,
-        image: "./assets/images/heels.jpg"
+        image: "./assets/images/heels.png"
     },
     {
         id: 20,
@@ -199,7 +199,7 @@ const productsData = [
         brand: "BrewMaster",
         stock: 25,
         price: 8500,
-        image: "./assets/images/coffee-maker.jpg"
+        image: "./assets/images/coffee-maker.png"
     },
     {
         id: 21,
@@ -209,7 +209,7 @@ const productsData = [
         brand: "KitchenPro",
         stock: 35,
         price: 7000,
-        image: "./assets/images/blender.jpg"
+        image: "./assets/images/blender.png"
     },
     {
         id: 22,
@@ -219,7 +219,7 @@ const productsData = [
         brand: "ToastIt",
         stock: 50,
         price: 3000,
-        image: "./assets/images/toaster.jpg"
+        image: "./assets/images/toaster.png"
     },
     {
         id: 23,
@@ -229,7 +229,7 @@ const productsData = [
         brand: "CleanBot",
         stock: 12,
         price: 35000,
-        image: "./assets/images/vacuum-cleaner.jpg"
+        image: "./assets/images/vacuum-cleaner.png"
     },
 
     // Sports
@@ -241,7 +241,7 @@ const productsData = [
         brand: "FlexFit",
         stock: 70,
         price: 2500,
-        image: "./assets/images/yoga-mat.jpg"
+        image: "./assets/images/yoga-mat.png"
     },
     {
         id: 25,
@@ -251,7 +251,7 @@ const productsData = [
         brand: "PowerLift",
         stock: 15,
         price: 10000,
-        image: "./assets/images/dumbel.jpg"
+        image: "./assets/images/dumbel.png"
     },
     {
         id: 26,
@@ -261,7 +261,7 @@ const productsData = [
         brand: "ActiveGear",
         stock: 50,
         price: 3500,
-        image: "./assets/images/jacket2.jpg"
+        image: "./assets/images/jacket2.png"
     },
     {
         id: 27,
@@ -271,6 +271,6 @@ const productsData = [
         brand: "TrailBlazer",
         stock: 25,
         price: 8000,
-        image: "./assets/images/mens-shoes.jpg"
+        image: "./assets/images/mens-shoes.png"
     }
 ];
